@@ -1,0 +1,17 @@
+Port 2222
+
+# Authentication:
+PermitRootLogin yes
+PasswordAuthentication yes
+
+# The default is to check both .ssh/authorized_keys and .ssh/authorized_keys2
+# but this is overridden so installations will only check .ssh/authorized_keys
+AuthorizedKeysFile      .ssh/authorized_keys
+
+# Feel free to re-enable these if your use case requires them.
+AllowTcpForwarding no
+GatewayPorts no
+X11Forwarding no
+
+# override default of no subsystems
+Subsystem       sftp    /usr/lib/ssh/sftp-server
