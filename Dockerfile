@@ -63,6 +63,8 @@ RUN adduser docker; \
 
 RUN mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
 
+WORKDIR /root
+
 RUN curl -LO https://github.com/swoole/yasd/archive/refs/heads/master.zip && \
     unzip master && \
     rm master.zip && \
@@ -76,20 +78,12 @@ RUN curl -LO https://github.com/swoole/yasd/archive/refs/heads/master.zip && \
     cd ../ && \
     rm -rf yasd-master
 
-WORKDIR /root
-
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY entrypoint.sh entrypoint.sh
 RUN chmod +x entrypoint.sh
 
-WORKDIR /home/docker
-
-COPY install.sh install.sh
-RUN chmod +x install.sh
-
-WORKDIR /var/www/html
-
-COPY --chown=docker /src /var/www/html/
+COPY install.sh /home/docker/install.sh
+RUN chmod +x /home/docker/install.sh
 
 EXPOSE 3000 2222
 
