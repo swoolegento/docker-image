@@ -28,6 +28,9 @@ php bin/magento setup:install \
     --elasticsearch-timeout=15 \
     --cache-backend=redis \
     --cache-backend-redis-server=${REDIS_HOST} \
+    --session-save=redis \
+    --session-save-redis-host=${REDIS_HOST} \
+    --session-save-redis-db=1 \
     --backend-frontname=admin
 
 echo '{
