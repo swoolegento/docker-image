@@ -62,6 +62,7 @@ RUN adduser docker; \
     echo 'docker ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 RUN mv /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
+RUN sed -i 's/memory_limit = 128M/memory_limit = 1G/' /usr/local/etc/php/php.ini
 
 WORKDIR /root
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sed -i 's/memory_limit = 128M/memory_limit = '${PHP_MEMORY_LIMIT}'/' /usr/local/etc/php/php.ini
+sed -i 's/memory_limit = 1G/memory_limit = '${PHP_MEMORY_LIMIT}'/' /usr/local/etc/php/php.ini
 
 FILE=/var/www/html/app/etc/config.php
 if test ! -f "$FILE"; then
