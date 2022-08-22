@@ -85,6 +85,8 @@ RUN chmod +x entrypoint.sh
 COPY install.sh /home/docker/install.sh
 RUN chmod +x /home/docker/install.sh
 
+RUN apk add redis
+
 EXPOSE 3000 2222
 
 ENTRYPOINT ["/root/entrypoint.sh"]
