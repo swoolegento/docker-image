@@ -5,6 +5,8 @@ sed -i 's/memory_limit = 128M/memory_limit = '${PHP_MEMORY_LIMIT}'/' /usr/local/
 FILE=/var/www/html/app/etc/config.php
 if test ! -f "$FILE"; then
     /bin/su -s /bin/bash -c '/home/docker/install.sh' docker
+else
+    /bin/su -s /bin/bash -c 'php bin/magento setup:upgrade --keep-generated' docker
 fi
 
 if [ "$SWOOLE_YASD_ENABLE" == "1" ] && ! grep -q "zend_extension=yasd" /usr/local/etc/php/conf.d/docker-php-ext-swoole.ini
