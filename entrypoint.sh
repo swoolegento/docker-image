@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! -z "$PHP_MEMORY_LIMIT" ]
+if [[ ! -z "$PHP_MEMORY_LIMIT" ]]
 then
     sed -i 's/memory_limit = 1G/memory_limit = '$PHP_MEMORY_LIMIT'/' /usr/local/etc/php/php.ini
 fi
