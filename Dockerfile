@@ -79,6 +79,11 @@ RUN curl -LO https://github.com/swoole/yasd/archive/refs/heads/master.zip && \
     cd ../ && \
     rm -rf yasd-master
 
+RUN bash -c "$(curl -L https://installer.blackfire.io/installer.sh)"
+RUN blackfire php:install
+COPY blackfire-php-alpine_amd64-php-81.so /usr/local/lib/php/extensions/no-debug-non-zts-20210902/blackfire.so
+RUN echo 'blackfire.agent_socket=tcp://0.0.0.0:8307' >> /usr/local/etc/php/conf.d/99-blackfire.ini
+
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY entrypoint.sh entrypoint.sh
 RUN chmod +x entrypoint.sh
